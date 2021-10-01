@@ -15,7 +15,7 @@ const registerValidation = (data) => {
 
     return schema.validate(data)
     //if there is an error, simply return with 400 before posting
-    if(error) return res.status(400).send(error.details[0].message);
+    
 }
 
 const loginValidation = (data) => {
