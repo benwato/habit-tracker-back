@@ -10,9 +10,10 @@ router.get('/show',verify, (req,res) => {
 })
 
 router.post('/add', verify, async (req,res) => {
-    // add new habit with data as follows:
+    // add new habit with data as follows
+    // for now i have left this test habit
     const newHabit = {
-        name: 'test-habit-5',
+        name: 'it-works',
         habitCompletion: {
             currentVal: 0,
             targetVal: 10,
@@ -29,6 +30,8 @@ router.post('/add', verify, async (req,res) => {
 })
 
 router.delete('/remove', verify, async (req,res) => {
+    //remove new habit by name
+    // for now i am just removing this test habit
     const habitToRemove = 'test-habit-5'
     await User.findOneAndUpdate({'_id': req.user._id}, {$pull: {habits:{name: habitToRemove}}})
     res.send(await User.find({_id: req.user._id}))
