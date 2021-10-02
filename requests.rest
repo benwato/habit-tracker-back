@@ -2,8 +2,8 @@ POST http://localhost:3000/api/user/register
 Content-Type: application/json
 
 {
-    "name": "Chad Lightning",
-    "email": "chad1112@email.com",
+    "name": "brod test",
+    "email": "chad1@email.com",
     "password": "chad111"
 }
 
@@ -13,10 +13,23 @@ POST http://localhost:3000/api/user/login
 Content-Type: application/json
 
 {
-    "email": "chad1112@email.com",
+    "email": "chad1@email.com",
     "password": "chad111"
 }
 
 ###
 GET http://localhost:3000/api/posts
-auth-token: 
+auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTU2ZjU1Y2VmOTg2Yzc3NWU0NDJlYWEiLCJpYXQiOjE2MzMxODM5ODN9.WGeEesIfLurdH1sIiWMl-EKh5TuEHsbP6ADfTr144pI
+
+
+###
+GET http://localhost:3000/api/habits/show
+auth-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTU4NjZkM2RkZDY2MDkyNzVmNTIyZjIiLCJpYXQiOjE2MzMxODQ4ODN9.3D76WdXub54Qhpjfb5vG6ijNsXXYXupf2zGLb_15BFE
+
+###
+POST http://localhost:3000/api/habits/add
+auth-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTU4NjZkM2RkZDY2MDkyNzVmNTIyZjIiLCJpYXQiOjE2MzMxODQ4ODN9.3D76WdXub54Qhpjfb5vG6ijNsXXYXupf2zGLb_15BFE
+
+###
+DELETE http://localhost:3000/api/habits/remove
+auth-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTU4NjZkM2RkZDY2MDkyNzVmNTIyZjIiLCJpYXQiOjE2MzMxODQ4ODN9.3D76WdXub54Qhpjfb5vG6ijNsXXYXupf2zGLb_15BFE
