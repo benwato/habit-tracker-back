@@ -18,30 +18,30 @@ router.get('/show', verify, (req, res) => {
 router.post('/add', verify, async (req, res) => {
     // add new habit with data as follows
     // for now i have left this test habit
-    
-    console.log(req)
+    // for testing, change to req.body."..."
+    // or just input strings
+    const data = req.body;
     const newHabit = new Habit({
-        name: 'test-habit-3',
-        // completion: {
-        //     targetVal: 100,
-        //     currentVal: 60,
-        // },
-        // frequency: {
-        //     daily: true,
-        //     weekly: false,
-        //     monthly: false
-        // }
+        
+        name: data.name,
+        completion: {
+            targetVal: data.completion.targetVal,
+            currentVal: data.completion.currentVal,
+        },
+        frequency: {
+            daily: data.frequency.daily,
+            weekly: data.frequency.weekly,
+            monthly: data.frequency.monthly
+        }
     })
-    await User.findOneAndUpdate({
+    const result = await User.findOneAndUpdate({
         '_id': req.user._id
     }, {
         $push: {
             habits: newHabit
         }
-    })
-    res.send(await User.find({
-        _id: req.user._id
-    }))
+    }, {new:true})
+    res.send(result)
 })
 
 //route for updating target value of habit

@@ -28,7 +28,13 @@ auth-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTU4NjZkM2RkZDY2MD
 
 ###
 POST http://localhost:3000/api/habits/add
-auth-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTU4NjZkM2RkZDY2MDkyNzVmNTIyZjIiLCJpYXQiOjE2MzMyNTUyNjgsImV4cCI6MTYzMzI1ODg2OH0.9O60FeHs0JEhekqjITJxT7bRPx-sx4sos4_NQrBU9_A
+auth-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTU4NjZkM2RkZDY2MDkyNzVmNTIyZjIiLCJpYXQiOjE2MzMyNjE5MzQsImV4cCI6MTYzMzI2NTUzNH0.SH6XbrGFrVyIJbvwOvA9NmOwJXChiTvuCHBGU9RT5Fo
+Content-Type: application/json
+
+{
+    "name": "testing-from-post-req",
+    
+}
 
 ###
 DELETE http://localhost:3000/api/habits/remove/test-habit
