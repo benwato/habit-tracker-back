@@ -11,3 +11,4 @@
 
 ### To do
 - Add logout route
+- Add jwt storage as cookie
