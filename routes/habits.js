@@ -45,7 +45,7 @@ router.post('/add', verify, async (req, res) => {
                 habits: newHabit
             }
         }, {new:true})
-        res.send(result)
+        res.status(201).send(result)
     }
     catch(error) {
         res.status(401).send(`Server error: ${error}`)
@@ -77,7 +77,7 @@ router.patch('/update/:id', verify, async (req, res) => {
         {new: true}
     
     )
-    res.send(result)
+    res.status(204).send(result)
 })
 
 

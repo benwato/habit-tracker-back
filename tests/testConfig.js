@@ -8,7 +8,7 @@ const app = require('../index.js')
 const {
     loginValidation,
     registerValidation
-} = require('../../validation')
+} = require('../validation')
 const request = require('supertest')
 dotenv.config();
 mongoose.connect(process.env.TEST_DB_CONNECT, {

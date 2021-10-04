@@ -5,15 +5,21 @@ const router = require("express").Router();
 const verify = require('../../middleware/auth');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken')
-const app = require('../../index.js')
+const app = require('../../server')
 const {
     loginValidation,
     registerValidation
 } = require('../../validation')
 const request = require('supertest')
+dotenv.config();
 
 describe("User model tests", () => {
     beforeAll(async () => {
+        mongoose.connect(process.env.TEST_DB_CONNECT, {
+            useNewUrlParser: true
+        }, () => {
+            console.log('connected to db')
+        })
         await User.deleteMany({});
     })
     afterEach(async () => {
