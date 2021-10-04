@@ -3,7 +3,7 @@ Content-Type: application/json
 
 {
     "name": "brod test",
-    "email": "chad1@email.com",
+    "email": "chad1email.com",
     "password": "chad111"
 }
 
@@ -24,7 +24,7 @@ auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTU4NjZkM2RkZDY2MDk
 
 ###
 GET http://localhost:3000/api/habits/show
-auth-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTU4NjZkM2RkZDY2MDkyNzVmNTIyZjIiLCJpYXQiOjE2MzMxODY5ODUsImV4cCI6MTYzMzE4NzAxNX0.ZYYgvjIU7n5YkunKXz8MkFl8dm24NnaPx6EqxhMbUQo
+auth-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTU4NjZkM2RkZDY2MDkyNzVmNTIyZjIiLCJpYXQiOjE2MzMzMzU5OTEsImV4cCI6MTYzMzMzOTU5MX0.CB3cBk6Sm2Ivo3y571i6wNfqov7-0OB09I34q46ff-Q
 
 ###
 POST http://localhost:3000/api/habits/add
@@ -42,4 +42,4 @@ auth-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTU4NjZkM2RkZDY2MD
 
 ###
 PATCH http://localhost:3000/api/habits/update/current/0
-auth-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTU4NjZkM2RkZDY2MDkyNzVmNTIyZjIiLCJpYXQiOjE2MzMyNTkwMTIsImV4cCI6MTYzMzI2MjYxMn0.mL91Fm-h16Tjsk5Avgt2uKTrzMgjJqkfzMG7iX-1V5g
+auth-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTU4NjZkM2RkZDY2MDkyNzVmNTIyZjIiLCJpYXQiOjE2MzMzMzU5OTEsImV4cCI6MTYzMzMzOTU5MX0.CB3cBk6Sm2Ivo3y571i6wNfqov7-0OB09I34q46ff-Q

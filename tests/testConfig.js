@@ -1,14 +1,14 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const router = require("express").Router();
-const verify = require('../../routes/verifyToken');
+const verify = require('../middleware/auth');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken')
-const app = require('../../index.js')
+const app = require('../index.js')
 const {
     loginValidation,
     registerValidation
-} = require('../../validation')
+} = require('../validation')
 const request = require('supertest')
 dotenv.config();
 mongoose.connect(process.env.TEST_DB_CONNECT, {

@@ -31,5 +31,25 @@ const loginValidation = (data) => {
     if(error) return res.status(400).send(error.details[0].message);
 }
 
+const habitValidation = (data) => {
+    console.log('running validation')
+    const schema = Joi.object({
+        name: Joi.string().min(1).required(),
+        completion: Joi.object({
+            targetVal: Joi.number().min(1).required(),
+            currentVal: Joi.number().min(0).required(),
+        }).required() ,
+            
+        
+        frequency: Joi.object({
+            daily: Joi.boolean().required(),
+            weekly: Joi.boolean().required(),
+            monthly: Joi.boolean().required()
+        }).required()
+    })
+    return schema.validate(data)
+}
+
 module.exports.registerValidation = registerValidation;
 module.exports.loginValidation = loginValidation;
+module.exports.habitValidation = habitValidation;
