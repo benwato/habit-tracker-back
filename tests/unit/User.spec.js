@@ -1,13 +1,16 @@
 const mongoose = require('mongoose');
-const Habit = require('../../models/Habit');
 const User = require('../../models/User')
 const dotenv = require('dotenv');
-dotenv.config();
-mongoose.connect(process.env.TEST_DB_CONNECT, {
-    useNewUrlParser: true
-}, () => {
-    console.log('connected to db')
-})
+const router = require("express").Router();
+const verify = require('../../middleware/auth');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken')
+const app = require('../../index.js')
+const {
+    loginValidation,
+    registerValidation
+} = require('../../validation')
+const request = require('supertest')
 
 describe("User model tests", () => {
     beforeAll(async () => {

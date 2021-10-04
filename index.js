@@ -6,7 +6,6 @@ const cookieParser = require('cookie-parser')
 const cors = require('cors')
 //import routes
 const authRoute = require('./routes/auth');
-const postRoute = require('./routes/posts');
 const habitRoute = require('./routes/habits')
 
 //.env config
@@ -30,7 +29,6 @@ app.use(cors({
 
 //route middlewares
 app.use('/api/user', authRoute);
-app.use('/api/posts',postRoute)
 app.use('/api/habits', habitRoute)
 
 app.listen(3000, () => console.log('server up and running'))

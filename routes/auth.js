@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const User = require("../models/User");
-const verify = require('./verifyToken');
+const verify = require('../middleware/auth');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken')
 const {loginValidation,registerValidation} = require('../validation')
@@ -30,12 +30,10 @@ router.post("/register", async (req, res) => {
   });
   try {
     const savedUser = await user.save();
-    res.status(201).send({
-      user: user._id,
-    })
+    res.status(201).send({name : user.name, email : user.email, _id: user._id})
     
   } catch (err) {
-    res.status(400).send(err);
+    res.status(500).send(err);
   }
 });
 
@@ -59,7 +57,8 @@ router.post("/login", async (req, res) => {
   const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET, {expiresIn: 3600});
   // console.log('about to make cookie')
   // res.cookie('token',token, {httpOnly:true, domain:"http://127.0.0.1:5500", sameSite: "none", secure: true})
-  res.header('auth-token', token).send(token)
+  res.header('auth-token', token)
+  res.status(200).send('successfully logged in')
 
 
 //   res.send("logged in");

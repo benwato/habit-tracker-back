@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const router = require("express").Router();
-const verify = require('../../routes/verifyToken');
+const verify = require('../middleware/auth');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken')
-const app = require('../../index.js')
+const app = require('../index.js')
 const {
     loginValidation,
     registerValidation

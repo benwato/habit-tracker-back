@@ -3,16 +3,17 @@ const User = require("../models/User");
 const Habit = require('../models/Habit')
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const verify = require('./verifyToken');
+const verify = require('../middleware/auth');
 const {
     registerValidation,
-    loginValidation
+    loginValidation,
+    habitValidation
 } = require("../validation");
 
 //route for showing all habits
-router.get('/show', verify, (req, res) => {
-    res.send(req.user.name)
-})
+// router.get('/show', verify, (req, res) => {
+//     res.send(req.user.name)
+// })
 
 //route for adding new habit
 router.post('/add', verify, async (req, res) => {
@@ -20,60 +21,71 @@ router.post('/add', verify, async (req, res) => {
     // for now i have left this test habit
     // for testing, change to req.body."..."
     // or just input strings
+    const {error} = habitValidation(req.body);
+    if (error) return res.status(400).send(error.details[0].message);
     const data = req.body;
-    const newHabit = new Habit({
+    try {
+        const newHabit = new Habit({
         
+            name: data.name,
+            completion: {
+                targetVal: data.completion.targetVal,
+                currentVal: data.completion.currentVal,
+            },
+            frequency: {
+                daily: data.frequency.daily,
+                weekly: data.frequency.weekly,
+                monthly: data.frequency.monthly
+            }
+        })
+        const result = await User.findOneAndUpdate({
+            '_id': req.user._id
+        }, {
+            $push: {
+                habits: newHabit
+            }
+        }, {new:true})
+        res.send(result)
+    }
+    catch(error) {
+        res.status(401).send(`Server error: ${error}`)
+    }
+    
+})
+
+//route for updating habit by id
+router.patch('/update/:id', verify, async (req, res) => {
+    //using placeholder constant for value
+    const {error} = habitValidation(req.body);
+    if (error) return res.status(400).send(error.details[0].message);
+    const data = req.body;
+    const updatedHabit = {
         name: data.name,
-        completion: {
-            targetVal: data.completion.targetVal,
-            currentVal: data.completion.currentVal,
-        },
-        frequency: {
-            daily: data.frequency.daily,
-            weekly: data.frequency.weekly,
-            monthly: data.frequency.monthly
-        }
-    })
-    const result = await User.findOneAndUpdate({
-        '_id': req.user._id
-    }, {
-        $push: {
-            habits: newHabit
-        }
-    }, {new:true})
-    res.send(result)
-})
-
-//route for updating target value of habit
-router.patch('/update/target/:id', verify, async (req, res) => {
-    //using placeholder constant for value
-    const targetVal = 150;
+            completion: {
+                targetVal: data.completion.targetVal,
+                currentVal: data.completion.currentVal,
+            },
+            frequency: {
+                daily: data.frequency.daily,
+                weekly: data.frequency.weekly,
+                monthly: data.frequency.monthly
+            }
+    }
     const result = await User.findByIdAndUpdate(
         {"_id": req.user._id},
-        { $set: {[`habits.${req.params.id}.completion.targetVal`]: targetVal}},
+        { $set: {[`habits.${req.params.id}`]: updatedHabit}},
         {new: true}
     
     )
     res.send(result)
 })
 
-//route for updating current value of habit
-router.patch('/update/current/:id', verify, async (req, res) => {
-    //using placeholder constant for value
-    const currentVal = 150;
-    const result = await User.findByIdAndUpdate(
-        {"_id": req.user._id},
-        { $set: {[`habits.${req.params.id}.completion.currentVal`]: currentVal}},
-        {new: true}
-    
-    )
-    res.send(result)
-})
 
-router.delete('/remove/:name', verify, async (req, res) => {
+router.delete('/delete/:name', verify, async (req, res) => {
     //remove new habit by name
     // for now i am just removing this test habit
-    const habitToRemove = req.params.name
+
+    const habitToRemove = req.params.name.split('_').join(' ')
     await User.findOneAndUpdate({
         '_id': req.user._id
     }, {
