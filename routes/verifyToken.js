@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 //middleware function to check token
 module.exports = function(req, res, next) {
   const token = req.header("auth-token");
+  // const token = req.cookies.jwt
   if (!token) return res.status(401).send("access denied");
 
   try {
