@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">80% </span>
+                <span class="strong">56.66% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>24/30</span>
+                <span class='fraction'>17/30</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">25% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/4</span>
+                <span class='fraction'>1/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.66% </span>
+                <span class="strong">33.33% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/3</span>
+                <span class='fraction'>1/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">85.71% </span>
+                <span class="strong">60.71% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>24/28</span>
+                <span class='fraction'>17/28</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -182,11 +182,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -199,14 +199,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -279,16 +279,16 @@ const {
 // })
 &nbsp;
 //route for adding new habit
-router.post('/add', verify, async (req, res) =&gt; {
+router.post('/add', verify, <span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
     // add new habit with data as follows
     // for now i have left this test habit
     // for testing, change to req.body."..."
     // or just input strings
-    const {error} = habitValidation(req.body);
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (error) <span class="cstat-no" title="statement not covered" >return res.status(400).send(error.details[0].message);</span>
-    const data = req.body;
-    try {
-        const newHabit = new Habit({
+    const {error} = <span class="cstat-no" title="statement not covered" >habitValidation(req.body);</span>
+<span class="cstat-no" title="statement not covered" >    if (error) <span class="cstat-no" title="statement not covered" >return res.status(400).send(error.details[0].message);</span></span>
+    const data = <span class="cstat-no" title="statement not covered" >req.body;</span>
+<span class="cstat-no" title="statement not covered" >    try {</span>
+        const newHabit = <span class="cstat-no" title="statement not covered" >new Habit({</span>
         
             name: data.name,
             completion: {
@@ -301,14 +301,14 @@ router.post('/add', verify, async (req, res) =&gt; {
                 monthly: data.frequency.monthly
             }
         })
-        const result = await User.findOneAndUpdate({
+        const result = <span class="cstat-no" title="statement not covered" >await User.findOneAndUpdate({</span>
             '_id': req.user._id
         }, {
             $push: {
                 habits: newHabit
             }
         }, {new:true})
-        res.status(201).send(result)
+<span class="cstat-no" title="statement not covered" >        res.status(201).send(result)</span>
     }
     catch(error) {
 <span class="cstat-no" title="statement not covered" >        res.status(401).send(`Server error: ${error}`)</span>
@@ -370,7 +370,7 @@ module.exports = router;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Mon Oct 04 2021 15:38:52 GMT+0100 (British Summer Time)
+                at Mon Oct 04 2021 15:56:31 GMT+0100 (British Summer Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>
