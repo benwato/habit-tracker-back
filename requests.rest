@@ -2,9 +2,9 @@ POST http://localhost:3000/api/user/register
 Content-Type: application/json
 
 {
-    "name": "brod test",
-    "email": "chad1email.com",
-    "password": "chad111"
+    "name": "testing frontend",
+    "email": "a@email.com",
+    "password": "password"
 }
 
 ###
