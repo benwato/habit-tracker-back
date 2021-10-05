@@ -16,6 +16,12 @@ router.get('/show', verify, async (req, res) => {
     res.status(201).json(user.habits)
 })
 
+router.get('/show/:id', verify, async (req, res) => {
+    const user = await User.findOne({"_id": req.user._id});
+    const singleHabit = user.habits.filter(habit => habit._id==req.params.id)
+    res.status(201).json({singleHabit})
+})
+
 //route for adding new habit
 router.post('/add', verify, async (req, res) => {
     // add new habit with data as follows
@@ -32,6 +38,7 @@ router.post('/add', verify, async (req, res) => {
             completion: {
                 targetVal: data.completion.targetVal,
                 currentVal: data.completion.currentVal,
+                
             },
             frequency: {
                 daily: data.frequency.daily,
@@ -65,12 +72,15 @@ router.patch('/update/:id', verify, async (req, res) => {
             completion: {
                 targetVal: data.completion.targetVal,
                 currentVal: data.completion.currentVal,
+                //REMOVE THIS LATER - FOR DEBUGGING ONLY
+                daysComplete: data.completion.daysComplete
             },
             frequency: {
                 daily: data.frequency.daily,
                 weekly: data.frequency.weekly,
                 monthly: data.frequency.monthly
-            }
+            },
+            
     }
     const result = await User.findByIdAndUpdate(
         {"_id": req.user._id},

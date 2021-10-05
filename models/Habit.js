@@ -33,6 +33,7 @@ const habitSchema = new mongoose.Schema({
             default: 1,
             min: 1
         },
+        daysComplete: []
     }
    
 
