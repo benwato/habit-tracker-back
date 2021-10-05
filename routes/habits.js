@@ -11,9 +11,10 @@ const {
 } = require("../validation");
 
 //route for showing all habits
-// router.get('/show', verify, (req, res) => {
-//     res.send(req.user.name)
-// })
+router.get('/show', verify, async (req, res) => {
+    const user = await User.findOne({"_id": req.user._id});
+    res.status(201).json(user.habits)
+})
 
 //route for adding new habit
 router.post('/add', verify, async (req, res) => {

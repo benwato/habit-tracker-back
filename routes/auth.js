@@ -5,6 +5,20 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { loginValidation, registerValidation } = require("../validation");
 
+router.post('/verify', async (req,res) => {
+  
+  const token = req.headers["auth-token"]
+  
+  try {
+    const verified = jwt.verify(token,process.env.TOKEN_SECRET)
+    if (verified) return res.status(200).json({message: "good token"})
+  }
+  catch (err) {
+    res.status(400).json({message: `${err}`})
+  }
+  
+})
+
 router.post("/register", async (req, res) => {
   //validate user before creating user/posting to db
   //uses registerValiation from validation.js, using Joi
