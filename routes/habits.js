@@ -91,6 +91,19 @@ router.patch('/update/:id', verify, async (req, res) => {
     res.status(204).send(result)
 })
 
+router.patch('/updatecurrent/:id',verify, async(req,res)=> {
+    const data =req.body;
+    console.log(data)
+    const updatedCurrent = data.completion.currentVal;
+
+    const result = await User.findByIdAndUpdate(
+        {"_id": req.user._id},
+        { $set: {[`habits.${req.params.id}.completion.currentVal`]: updatedCurrent}},
+        {new: true}
+    )
+
+})
+
 
 router.delete('/delete/:name', verify, async (req, res) => {
     //remove new habit by name
