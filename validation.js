@@ -38,7 +38,8 @@ const habitValidation = (data) => {
         completion: Joi.object({
             targetVal: Joi.number().min(1).required(),
             currentVal: Joi.number().required(),
-            daysComplete: Joi.array()
+            daysComplete: Joi.array(),
+            dailyValues: Joi.array()
         }).required() ,
             
         

@@ -51,6 +51,8 @@ router.post('/add', verify, async (req, res) => {
             completion: {
                 targetVal: data.completion.targetVal,
                 currentVal: data.completion.currentVal,
+                daysComplete: data.completion.daysComplete,
+                dailyValues: data.completion.dailyValues
                 
             },
             frequency: {
@@ -88,8 +90,7 @@ router.patch('/update/:id', verify, async (req, res) => {
                 currentVal: data.completion.currentVal,
                 //REMOVE THIS LATER - FOR DEBUGGING ONLY
                 daysComplete: data.completion.daysComplete, //array 1s and 0s
-                dailyValues: //array of current/target for each day
-                [1.2, 0.9, 1, 1.1, 1.1]
+                dailyValues: data.completion.daysComplete
             },
             frequency: {
                 daily: data.frequency.daily,
