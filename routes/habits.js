@@ -12,7 +12,12 @@ const {
 
 //route for showing all habits
 router.get('/show', verify, async (req, res) => {
+    console.log('i have been called')
+    
     const user = await User.findOne({"_id": req.user._id});
+    await user.checkSomething();
+    //now we have access to User.habits
+    
     res.status(201).json(user.habits)
 })
 
@@ -44,7 +49,8 @@ router.post('/add', verify, async (req, res) => {
                 daily: data.frequency.daily,
                 weekly: data.frequency.weekly,
                 monthly: data.frequency.monthly
-            }
+            },
+            updatedAt: data.updatedAt
         })
         const result = await User.findOneAndUpdate({
             '_id': req.user._id
@@ -73,13 +79,16 @@ router.patch('/update/:id', verify, async (req, res) => {
                 targetVal: data.completion.targetVal,
                 currentVal: data.completion.currentVal,
                 //REMOVE THIS LATER - FOR DEBUGGING ONLY
-                daysComplete: data.completion.daysComplete
+                daysComplete: data.completion.daysComplete, //array 1s and 0s
+                dailyValues: //array of current/target for each day
+                [1.2, 0.9, 1, 1.1, 1.1]
             },
             frequency: {
                 daily: data.frequency.daily,
                 weekly: data.frequency.weekly,
                 monthly: data.frequency.monthly
             },
+            updatedAt: Date.now()
             
     }
     const result = await User.findByIdAndUpdate(
