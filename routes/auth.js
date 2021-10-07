@@ -48,7 +48,7 @@ router.post("/register", async (req, res) => {
   try {
     await user.save();
     //create token and give it to user
-    const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET, {
+    const token = jwt.sign({ _id: user._id, name: user.name }, process.env.TOKEN_SECRET, {
       expiresIn: 3600,
     });
     res.header("auth-token", token);
@@ -82,7 +82,7 @@ router.post("/login", async (req, res) => {
   if (!validPass) return res.status(400).json({ error: "incorrect password" });
 
   //create token and give it to user
-  const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET, {
+  const token = jwt.sign({ _id: user._id, name:user.name }, process.env.TOKEN_SECRET, {
     expiresIn: 3600,
   });
  
