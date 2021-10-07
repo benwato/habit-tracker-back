@@ -36,6 +36,7 @@ const habitValidation = (data) => {
     const schema = Joi.object({
         name: Joi.string().min(1).required(),
         completion: Joi.object({
+            units: Joi.string(),
             targetVal: Joi.number().min(1).required(),
             currentVal: Joi.number().required(),
             daysComplete: Joi.array(),
