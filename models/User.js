@@ -48,8 +48,6 @@ userSchema.methods.checkSomething = async function checkSomething() {
             const dateDifferenceMs = currentDate - updatedDate
             const dateDifferenceMinutes = dateDifferenceMs / (1000 * 60)
             //if it has been a day, compute currentVal/targetVal
-            //first check if it has been more than 1 minute, for repeated api call
-            if(dateDifferenceMinutes < 1) {console.log('less than 1 min')}
            if(dateDifferenceMinutes >= 1){
             const completedFraction = habit.completion.currentVal/habit.completion.targetVal
             // push this value to array dailyValues
@@ -60,7 +58,7 @@ userSchema.methods.checkSomething = async function checkSomething() {
             else {
                 habit.completion.daysComplete.push(0)
             }
-           
+            
             habit.completion.currentVal = 0;
             habit.updatedAt = Date.now()
             

@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">55% </span>
+                <span class="strong">65.21% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>11/20</span>
+                <span class='fraction'>15/23</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">33.33% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>2/6</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">55% </span>
+                <span class="strong">63.63% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>11/20</span>
+                <span class='fraction'>14/22</span>
             </div>
         
             
@@ -129,7 +129,12 @@
 <a name='L70'></a><a href='#L70'>70</a>
 <a name='L71'></a><a href='#L71'>71</a>
 <a name='L72'></a><a href='#L72'>72</a>
-<a name='L73'></a><a href='#L73'>73</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">3x</span>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a>
+<a name='L78'></a><a href='#L78'>78</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -165,8 +170,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -179,15 +182,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -195,13 +194,24 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span></td><td class="text"><pre class="prettyprint lang-js">const mongoose = require('mongoose');
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const mongoose = require('mongoose');
 const habitSchema = require('./Habit').schema;
 const userSchema = new mongoose.Schema({
     name: {
@@ -231,56 +241,61 @@ const userSchema = new mongoose.Schema({
         type: Date,
         default: Date.now()
     }
+   
 &nbsp;
 &nbsp;
 &nbsp;
-&nbsp;
-}, {
-    timestamps: false
-});
+}, {timestamps: false});
 &nbsp;
 userSchema.methods.checkSomething = async function checkSomething() {
-    updateHabitOnTime(this)
+     updateHabitOnTime(this)
     //do this for every habit in the habits array
-    async function updateHabitOnTime(obj) {
+     async function updateHabitOnTime(obj) {
         for (const habit of obj.habits) {
-            const currentDate = Date.now()
+            const currentDate =  Date.now()
             const updatedDate = await getDate(habit)
             async function getDate(habit) {
                 return await habit.updatedAt
             }
             //compare current date to createdAt date
+            const dateDifferenceMs = currentDate - updatedDate
             const dateDifferenceMinutes = dateDifferenceMs / (1000 * 60)
             //if it has been a day, compute currentVal/targetVal
             //first check if it has been more than 1 minute, for repeated api call
-<span class="cstat-no" title="statement not covered" >            if (dateDifferenceMinutes &gt;= 1) {</span>
-                const completedFraction = <span class="cstat-no" title="statement not covered" >habit.completion.currentVal / habit.completion.targetVal</span>
-                // push this value to array dailyValues
-<span class="cstat-no" title="statement not covered" >                habit.completion.dailyValues.push(completedFraction)</span>
-<span class="cstat-no" title="statement not covered" >                if (completedFraction &gt;= 1) {</span>
-<span class="cstat-no" title="statement not covered" >                    habit.completion.daysComplete.push(1)</span>
-                } else {
-<span class="cstat-no" title="statement not covered" >                    habit.completion.daysComplete.push(0)</span>
-                }
-<span class="cstat-no" title="statement not covered" >                habit.completion.currentVal = 0;</span>
-<span class="cstat-no" title="statement not covered" >                habit.updatedAt = Date.now()</span>
-<span class="cstat-no" title="statement not covered" >                await obj.save()</span>
-&nbsp;
+            <span class="missing-if-branch" title="else path not taken" >E</span>if(dateDifferenceMinutes &lt; 1) {console.log('less than 1 min')}
+           <span class="missing-if-branch" title="if path not taken" >I</span>if(dateDifferenceMinutes &gt;= 1){
+            const completedFraction = <span class="cstat-no" title="statement not covered" >habit.completion.currentVal/habit.completion.targetVal</span>
+            // push this value to array dailyValues
+<span class="cstat-no" title="statement not covered" >            habit.completion.dailyValues.push(completedFraction)</span>
+<span class="cstat-no" title="statement not covered" >            if (completedFraction &gt;= 1){</span>
+<span class="cstat-no" title="statement not covered" >                habit.completion.daysComplete.push(1)</span>
             }
+            else {
+<span class="cstat-no" title="statement not covered" >                habit.completion.daysComplete.push(0)</span>
+            }
+           
+<span class="cstat-no" title="statement not covered" >            habit.completion.currentVal = 0;</span>
+<span class="cstat-no" title="statement not covered" >            habit.updatedAt = Date.now()</span>
+            
+<span class="cstat-no" title="statement not covered" >            await obj.save()</span>
+            
+           }
         }
-&nbsp;
+        
     }
-&nbsp;
+    
 }
 &nbsp;
-module.exports = mongoose.model('User', userSchema)</pre></td></tr></table></pre>
+module.exports = mongoose.model('User',userSchema)
+&nbsp;
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Thu Oct 07 2021 17:23:58 GMT+0100 (British Summer Time)
+                at Thu Oct 07 2021 17:25:14 GMT+0100 (British Summer Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>
