@@ -8,4 +8,8 @@ router.get("/", verify, async (req, res) => {
   res.status(200).json(result)
 });
 
+router.get('/',(req,res)=> {
+  res.status(200).json({"message":"Hello World"})
+})
+
 module.exports = router;
