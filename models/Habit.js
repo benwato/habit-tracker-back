@@ -7,7 +7,7 @@ const habitSchema = new mongoose.Schema({
         min: 1,
         max: 255
     },
-    
+
     frequency: {
         daily: {
             type: Boolean,
@@ -26,18 +26,35 @@ const habitSchema = new mongoose.Schema({
         currentVal: {
             type: Number,
             default: 0,
-            min: 1
+            min: 0
         },
         targetVal: {
             type: Number,
             default: 1,
             min: 1
         },
+        daysComplete: [],
+        dailyValues: [],
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now()
+    },
+    updatedAt: {
+        type: Date
     }
-   
 
 
 
-}, {timestamps: true});
 
-module.exports = mongoose.model('Habit',habitSchema)
+
+}, {
+    timestamps: false
+});
+
+
+
+
+
+
+module.exports = mongoose.model('Habit', habitSchema)

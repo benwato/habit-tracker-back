@@ -11,9 +11,31 @@ const {
 } = require("../validation");
 
 //route for showing all habits
-// router.get('/show', verify, (req, res) => {
-//     res.send(req.user.name)
-// })
+router.get('/show', verify, async (req, res) => {
+   
+    
+    const user = await User.findOne({"_id": req.user._id});
+    await user.checkSomething()
+    //now we have access to User.habits
+    
+    res.status(201).json(user.habits)
+})
+
+router.get('/show-noupdate', verify, async (req, res) => {
+    
+    const user = await User.findOne({"_id": req.user._id});
+    //now we have access to User.habits
+    
+    res.status(201).json(user.habits)
+})
+
+
+
+router.get('/show/:id', verify, async (req, res) => {
+    const user = await User.findOne({"_id": req.user._id});
+    const singleHabit = user.habits.filter(habit => habit._id==req.params.id)
+    res.status(201).json({singleHabit})
+})
 
 //route for adding new habit
 router.post('/add', verify, async (req, res) => {
@@ -31,12 +53,16 @@ router.post('/add', verify, async (req, res) => {
             completion: {
                 targetVal: data.completion.targetVal,
                 currentVal: data.completion.currentVal,
+                daysComplete: data.completion.daysComplete,
+                dailyValues: data.completion.dailyValues
+                
             },
             frequency: {
                 daily: data.frequency.daily,
                 weekly: data.frequency.weekly,
                 monthly: data.frequency.monthly
-            }
+            },
+            updatedAt: data.updatedAt
         })
         const result = await User.findOneAndUpdate({
             '_id': req.user._id
@@ -64,12 +90,17 @@ router.patch('/update/:id', verify, async (req, res) => {
             completion: {
                 targetVal: data.completion.targetVal,
                 currentVal: data.completion.currentVal,
+                //REMOVE THIS LATER - FOR DEBUGGING ONLY
+                daysComplete: data.completion.daysComplete, //array 1s and 0s
+                dailyValues: data.completion.daysComplete
             },
             frequency: {
                 daily: data.frequency.daily,
                 weekly: data.frequency.weekly,
                 monthly: data.frequency.monthly
-            }
+            },
+            updatedAt: Date.now()
+            
     }
     const result = await User.findByIdAndUpdate(
         {"_id": req.user._id},
@@ -78,6 +109,19 @@ router.patch('/update/:id', verify, async (req, res) => {
     
     )
     res.status(204).send(result)
+})
+
+router.patch('/updatecurrent/:id',verify, async(req,res)=> {
+    const data =req.body;
+    console.log(data)
+    const updatedCurrent = data.completion.currentVal;
+
+    const result = await User.findByIdAndUpdate(
+        {"_id": req.user._id},
+        { $set: {[`habits.${req.params.id}.completion.currentVal`]: updatedCurrent}},
+        {new: true}
+    )
+
 })
 
 

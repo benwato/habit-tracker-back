@@ -2,9 +2,9 @@ POST http://localhost:3000/api/user/register
 Content-Type: application/json
 
 {
-    "name": "brod test",
-    "email": "chad1email.com",
-    "password": "chad111"
+    "name": "testing frontend",
+    "email": "a@email.com",
+    "password": "password"
 }
 
 ###
@@ -24,7 +24,7 @@ auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTU4NjZkM2RkZDY2MDk
 
 ###
 GET http://localhost:3000/api/habits/show
-auth-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTU4NjZkM2RkZDY2MDkyNzVmNTIyZjIiLCJpYXQiOjE2MzMzMzU5OTEsImV4cCI6MTYzMzMzOTU5MX0.CB3cBk6Sm2Ivo3y571i6wNfqov7-0OB09I34q46ff-Q
+auth-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTViMDA5NmI0NWYzOTViMDcxMzQzMGYiLCJpYXQiOjE2MzM0MTgxNTIsImV4cCI6MTYzMzQyMTc1Mn0.OXNXCIR110IjwJqNsjuRm47I5eyju0jxk2DKzOhrCTM
 
 ###
 POST http://localhost:3000/api/habits/add
