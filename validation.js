@@ -36,7 +36,7 @@ const habitValidation = (data) => {
     const schema = Joi.object({
         name: Joi.string().min(1).required(),
         completion: Joi.object({
-            units: Joi.string(),
+            units: Joi.string().allow(""),
             targetVal: Joi.number().min(1).required(),
             currentVal: Joi.number().required(),
             daysComplete: Joi.array(),
@@ -50,7 +50,7 @@ const habitValidation = (data) => {
             monthly: Joi.boolean().required()
         }).required(),
         updatedAt: Joi.date(),
-        notes: Joi.string()
+        notes: Joi.string().allow("")
     })
     return schema.validate(data)
 }
