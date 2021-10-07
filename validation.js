@@ -48,7 +48,8 @@ const habitValidation = (data) => {
             weekly: Joi.boolean().required(),
             monthly: Joi.boolean().required()
         }).required(),
-        updatedAt: Joi.date()
+        updatedAt: Joi.date(),
+        notes: Joi.string()
     })
     return schema.validate(data)
 }

@@ -62,7 +62,8 @@ router.post('/add', verify, async (req, res) => {
                 weekly: data.frequency.weekly,
                 monthly: data.frequency.monthly
             },
-            updatedAt: data.updatedAt
+            updatedAt: data.updatedAt,
+            notes: data.notes
         })
         const result = await User.findOneAndUpdate({
             '_id': req.user._id
@@ -99,7 +100,8 @@ router.patch('/update/:id', verify, async (req, res) => {
                 weekly: data.frequency.weekly,
                 monthly: data.frequency.monthly
             },
-            updatedAt: Date.now()
+            updatedAt: Date.now(),
+            notes: data.notes
             
     }
     const result = await User.findByIdAndUpdate(

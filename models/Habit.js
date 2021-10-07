@@ -42,6 +42,9 @@ const habitSchema = new mongoose.Schema({
     },
     updatedAt: {
         type: Date
+    },
+    notes: {
+        type: String
     }
 
 
