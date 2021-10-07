@@ -7,6 +7,7 @@ const cors = require('cors')
 //import routes
 const authRoute = require('./routes/auth');
 const habitRoute = require('./routes/habits')
+const userRoute = require('./routes/user')
 //.env config
 dotenv.config();
 //middleware
@@ -20,5 +21,6 @@ app.use(cors({
 //route middlewares
 app.use('/api/user', authRoute);
 app.use('/api/habits', habitRoute)
+app.use('/api', userRoute)
 
 module.exports = app;

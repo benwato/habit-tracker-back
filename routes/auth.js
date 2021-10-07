@@ -11,7 +11,9 @@ router.post('/verify', async (req,res) => {
   
   try {
     const verified = jwt.verify(token,process.env.TOKEN_SECRET)
-    if (verified) return res.status(200).json({message: "good token"})
+    req.user = verified;
+    
+    if (verified) return res.status(200).json({message: "good token", '_id':req.user._id})
   }
   catch (err) {
     res.status(400).json({message: `${err}`})
