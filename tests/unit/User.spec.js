@@ -40,5 +40,22 @@ describe("User model tests", () => {
             expect(foundUser.name).toEqual(testUser.name)
         })
     })
-})
-
+    describe("updates", () => {
+        it("can sucessfully update based on creation time", async () => {
+            const testUser = new User({name: "test",email:"test@email.com",password:"test-pass", habits: {
+                name: 'test-habit',
+                completion: {
+                    currentVal: 20,
+                    targetVal: 5,
+                    dailyValues: [1.2,1.3,1.4],
+                    daysComplete: [1,1,1]
+                },
+                createdAt: Date.now()-10000000000,
+                updatedAt: Date.now(),
+            }})
+            await testUser.checkSomething()
+            await expect(testUser.habits[0].completion.daysComplete.length).toEqual(3)
+        })
+        
+    
+})})
