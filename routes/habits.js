@@ -123,6 +123,7 @@ router.patch('/updatecurrent/:id',verify, async(req,res)=> {
         { $set: {[`habits.${req.params.id}.completion.currentVal`]: updatedCurrent}},
         {new: true}
     )
+    res.status(204).send(result)
 
 })
 
