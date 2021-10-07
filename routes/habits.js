@@ -93,7 +93,7 @@ router.patch('/update/:id', verify, async (req, res) => {
                 currentVal: data.completion.currentVal,
                 //REMOVE THIS LATER - FOR DEBUGGING ONLY
                 daysComplete: data.completion.daysComplete, //array 1s and 0s
-                dailyValues: data.completion.daysComplete
+                dailyValues: data.completion.dailyValues
             },
             frequency: {
                 daily: data.frequency.daily,
@@ -123,6 +123,7 @@ router.patch('/updatecurrent/:id',verify, async(req,res)=> {
         { $set: {[`habits.${req.params.id}.completion.currentVal`]: updatedCurrent}},
         {new: true}
     )
+    res.status(204).send(result)
 
 })
 
