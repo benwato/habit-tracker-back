@@ -12,10 +12,10 @@ const {
 
 //route for showing all habits
 router.get('/show', verify, async (req, res) => {
-    console.log('i have been called')
+   
     
     const user = await User.findOne({"_id": req.user._id});
-    await setTimeout(()=>{user.checkSomething()},100);
+    await user.checkSomething()
     //now we have access to User.habits
     
     res.status(201).json(user.habits)
@@ -28,6 +28,8 @@ router.get('/show-noupdate', verify, async (req, res) => {
     
     res.status(201).json(user.habits)
 })
+
+
 
 router.get('/show/:id', verify, async (req, res) => {
     const user = await User.findOne({"_id": req.user._id});

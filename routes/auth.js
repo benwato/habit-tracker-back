@@ -67,7 +67,7 @@ router.post("/register", async (req, res) => {
 
 //login route
 router.post("/login", async (req, res) => {
-  console.log("dealing with login");
+  
   //validate user before creating user/posting to db
   //uses registerValiation from validation.js, using Joi
   const { error } = loginValidation(req.body);
@@ -85,8 +85,7 @@ router.post("/login", async (req, res) => {
   const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET, {
     expiresIn: 3600,
   });
-  // console.log('about to make cookie')
-  // res.cookie('token',token, {httpOnly:true, domain:"http://127.0.0.1:5500", sameSite: "none", secure: true})
+ 
   res.header("auth-token", token);
   res.status(200).json({ token });
 

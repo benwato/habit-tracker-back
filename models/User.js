@@ -53,10 +53,10 @@ userSchema.methods.checkSomething = async function checkSomething() {
             const dateDifferenceMinutes = dateDifferenceMs / (1000 * 60)
             const dateDifferenceDays = dateDifferenceMs / (1000 * 60 * 60 * 24)
             
-            console.log(`\n logging info for: ${habit.name}`)
-            console.log(`date diff in ms: ${dateDifferenceMs}`)
-            console.log(`date diff in mins: ${dateDifferenceMinutes}`)
-            console.log(`date diff in days: ${dateDifferenceDays}`)
+            // console.log(`\n logging info for: ${habit.name}`)
+            // console.log(`date diff in ms: ${dateDifferenceMs}`)
+            // console.log(`date diff in mins: ${dateDifferenceMinutes}`)
+            // console.log(`date diff in days: ${dateDifferenceDays}`)
         //if it has been a day, compute currentVal/targetVal
             //first check if it has been more than 1 minute, for repeated api call
             if(dateDifferenceMinutes < 1) {console.log('less than 1min')}
