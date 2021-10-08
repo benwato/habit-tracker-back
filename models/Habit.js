@@ -23,6 +23,9 @@ const habitSchema = new mongoose.Schema({
         }
     },
     completion: {
+        units: {
+            type: String
+        },
         currentVal: {
             type: Number,
             default: 0,

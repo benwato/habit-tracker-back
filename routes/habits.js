@@ -51,6 +51,7 @@ router.post('/add', verify, async (req, res) => {
         
             name: data.name,
             completion: {
+                units: data.completion.units,
                 targetVal: data.completion.targetVal,
                 currentVal: data.completion.currentVal,
                 daysComplete: data.completion.daysComplete,
@@ -89,6 +90,7 @@ router.patch('/update/:id', verify, async (req, res) => {
     const updatedHabit = {
         name: data.name,
             completion: {
+                units: data.completion.units,
                 targetVal: data.completion.targetVal,
                 currentVal: data.completion.currentVal,
                 //REMOVE THIS LATER - FOR DEBUGGING ONLY

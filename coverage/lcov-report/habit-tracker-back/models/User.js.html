@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">19.23% </span>
+                <span class="strong">65.21% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>5/26</span>
+                <span class='fraction'>15/23</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">33.33% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/6</span>
+                <span class='fraction'>2/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">20% </span>
+                <span class="strong">63.63% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>5/25</span>
+                <span class='fraction'>14/22</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -171,24 +171,22 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -198,15 +196,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
@@ -247,43 +247,43 @@ const userSchema = new mongoose.Schema({
 &nbsp;
 }, {timestamps: false});
 &nbsp;
-userSchema.methods.checkSomething = function <span class="fstat-no" title="function not covered" >checkSomething(</span>) {
+userSchema.methods.checkSomething = async function checkSomething() {
+     updateHabitOnTime(this)
     //do this for every habit in the habits array
-<span class="cstat-no" title="statement not covered" >    for (const habit of this.habits) {</span>
-        const currentDate = <span class="cstat-no" title="statement not covered" >Date.now()</span>
-        const updatedDate = <span class="cstat-no" title="statement not covered" >habit.updatedAt</span>
-        //compare current date to createdAt date
-        
-        const dateDifferenceMs = <span class="cstat-no" title="statement not covered" >currentDate - updatedDate</span>
-        const dateDifferenceMinutes = <span class="cstat-no" title="statement not covered" >dateDifferenceMs / (1000 * 60)</span>
-        const dateDifferenceDays = <span class="cstat-no" title="statement not covered" >dateDifferenceMs / (1000 * 60 * 60 * 24)</span>
-        
-<span class="cstat-no" title="statement not covered" >        console.log(`\n logging info for: ${habit.name}`)</span>
-<span class="cstat-no" title="statement not covered" >        console.log(`date diff in ms: ${dateDifferenceMs}`)</span>
-<span class="cstat-no" title="statement not covered" >        console.log(`date diff in mins: ${dateDifferenceMinutes}`)</span>
-<span class="cstat-no" title="statement not covered" >        console.log(`date diff in days: ${dateDifferenceDays}`)</span>
-    //if it has been a day, compute currentVal/targetVal
-        //first check if it has been more than 1 minute, for repeated api call
-<span class="cstat-no" title="statement not covered" >        if(dateDifferenceMs &lt; 100) {<span class="cstat-no" title="statement not covered" >return}</span></span>
-<span class="cstat-no" title="statement not covered" >       if(dateDifferenceMinutes &gt;= 1){</span>
-        const completedFraction = <span class="cstat-no" title="statement not covered" >habit.completion.currentVal/habit.completion.targetVal</span>
-        // push this value to array dailyValues
-<span class="cstat-no" title="statement not covered" >        habit.completion.dailyValues.push(completedFraction)</span>
-<span class="cstat-no" title="statement not covered" >        if (completedFraction &gt;= 1){</span>
-<span class="cstat-no" title="statement not covered" >            habit.completion.daysComplete.push(1)</span>
+     async function updateHabitOnTime(obj) {
+        for (const habit of obj.habits) {
+            const currentDate =  Date.now()
+            const updatedDate = await getDate(habit)
+            async function getDate(habit) {
+                return await habit.updatedAt
+            }
+            //compare current date to createdAt date
+            const dateDifferenceMs = currentDate - updatedDate
+            const dateDifferenceMinutes = dateDifferenceMs / (1000 * 60)
+            //if it has been a day, compute currentVal/targetVal
+            //first check if it has been more than 1 minute, for repeated api call
+            <span class="missing-if-branch" title="else path not taken" >E</span>if(dateDifferenceMinutes &lt; 1) {console.log('less than 1 min')}
+           <span class="missing-if-branch" title="if path not taken" >I</span>if(dateDifferenceMinutes &gt;= 1){
+            const completedFraction = <span class="cstat-no" title="statement not covered" >habit.completion.currentVal/habit.completion.targetVal</span>
+            // push this value to array dailyValues
+<span class="cstat-no" title="statement not covered" >            habit.completion.dailyValues.push(completedFraction)</span>
+<span class="cstat-no" title="statement not covered" >            if (completedFraction &gt;= 1){</span>
+<span class="cstat-no" title="statement not covered" >                habit.completion.daysComplete.push(1)</span>
+            }
+            else {
+<span class="cstat-no" title="statement not covered" >                habit.completion.daysComplete.push(0)</span>
+            }
+           
+<span class="cstat-no" title="statement not covered" >            habit.completion.currentVal = 0;</span>
+<span class="cstat-no" title="statement not covered" >            habit.updatedAt = Date.now()</span>
+            
+<span class="cstat-no" title="statement not covered" >            await obj.save()</span>
+            
+           }
         }
-        else {
-<span class="cstat-no" title="statement not covered" >            habit.completion.daysComplete.push(0)</span>
-        }
-<span class="cstat-no" title="statement not covered" >        habit.completion.currentVal = 0;</span>
-<span class="cstat-no" title="statement not covered" >        habit.updatedAt = Date.now()</span>
-       }
         
-        
-        
-        // if the value is &gt;1 , push a 1 to daysComplete - else push a 0 
     }
-<span class="cstat-no" title="statement not covered" >    this.save()</span>
+    
 }
 &nbsp;
 module.exports = mongoose.model('User',userSchema)
@@ -295,7 +295,7 @@ module.exports = mongoose.model('User',userSchema)
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Wed Oct 06 2021 11:11:09 GMT+0100 (British Summer Time)
+                at Thu Oct 07 2021 17:25:14 GMT+0100 (British Summer Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>

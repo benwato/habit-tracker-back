@@ -38,28 +38,16 @@ userSchema.methods.checkSomething = async function checkSomething() {
      updateHabitOnTime(this)
     //do this for every habit in the habits array
      async function updateHabitOnTime(obj) {
-         
-
         for (const habit of obj.habits) {
             const currentDate =  Date.now()
             const updatedDate = await getDate(habit)
             async function getDate(habit) {
                 return await habit.updatedAt
             }
-            
             //compare current date to createdAt date
-            
             const dateDifferenceMs = currentDate - updatedDate
             const dateDifferenceMinutes = dateDifferenceMs / (1000 * 60)
-            const dateDifferenceDays = dateDifferenceMs / (1000 * 60 * 60 * 24)
-            
-            // console.log(`\n logging info for: ${habit.name}`)
-            // console.log(`date diff in ms: ${dateDifferenceMs}`)
-            // console.log(`date diff in mins: ${dateDifferenceMinutes}`)
-            // console.log(`date diff in days: ${dateDifferenceDays}`)
-        //if it has been a day, compute currentVal/targetVal
-            //first check if it has been more than 1 minute, for repeated api call
-            if(dateDifferenceMinutes < 10) {console.log('less than 1min')}
+            //if it has been a day, compute currentVal/targetVal
            if(dateDifferenceMinutes >= 24*60){
             const completedFraction = habit.completion.currentVal/habit.completion.targetVal
             // push this value to array dailyValues
@@ -70,20 +58,15 @@ userSchema.methods.checkSomething = async function checkSomething() {
             else {
                 habit.completion.daysComplete.push(0)
             }
-           
+            
             habit.completion.currentVal = 0;
             habit.updatedAt = Date.now()
-            console.log(habit.updatedAt)
+            
             await obj.save()
             
            }
-           
-            
-            
-            
-            // if the value is >1 , push a 1 to daysComplete - else push a 0 
         }
-        // obj.save()
+        
     }
     
 }
